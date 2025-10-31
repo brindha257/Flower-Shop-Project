@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flower Shop Website</title>
+    <script>
+        <button onclick="addToCart('ring', 5999)">Add to Cart</button>
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(90deg, #FB64B6, #8e4f96);
+            color: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px black(0, 0, 0, 0.2);
+            position: sticky;
+            top: 0;
+        }
+
+        .navbar ul {
+            display: flex;
+            align-items: center;
+            list-style: none;
+            gap: 20px;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: white;
+        }
+
+        .navbar h2 {
+            justify-content: center;
+        }
+
+        .navbar input {
+            padding: 10px;
+            width: 40%;
+            border-radius: 30px;
+            border: none;
+            outline: none;
+        }
+
+        .navbar .categories button {
+            margin-top: 10px;
+            background-color: #f62fb7;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .navbar .categories button:hover {
+            background-color: #f392c7;
+            color: white;
+        }
+
+
+        .cart-icon {
+            cursor: pointer;
+            font-size: 1.3rem;
+            background: #fff;
+            color: black;
+            padding: 6px 12px;
+            border-radius: 20px;
+            transition: all 0.3s;
+        }
+
+        .cart-icon:hover {
+            background: #e8f5e9;
+        }
+
+        .section1 {
+            text-align: center;
+            background-image: url("./images/mainflower.jpg");
+            height: 630px;
+            width: 100%;
+        }
+
+        .section1 p1 {
+            color: black;
+            font-size: 50px;
+            font-weight: 900;
+            display: flex;
+            text-align: center;
+            padding: 180px 100px 20px 50px;
+        }
+
+        .section1 p2 {
+            color: black;
+            font-size: 20px;
+            font-weight: 200;
+            display: flex;
+            text-align: center;
+            padding: 0px 120px 10px 100px;
+        }
+
+
+        .product-section {
+            text-align: center;
+            padding: 50px 20px;
+            background-color: #fff;
+        }
+
+        .product-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .product-card {
+            background: #ffe6f0;
+            border-radius: 15px;
+            padding: 10px;
+            width: 200px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover {
+            transform: scale(1.05);
+        }
+
+        .product-card img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .product-card button {
+            margin-top: 10px;
+            background-color: #e91e63;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .product img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 12px;
+        }
+
+        .product-card h3 {
+            font-size: 1.1rem;
+            margin: 10px 0;
+        }
+
+        .product-card p {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #2e7d32;
+        }
+
+        .product-card button:hover {
+            background: #FFA2A2;
+            transform: scale(1.05);
+        }
+
+        /* Add this to your existing CSS */
+        .product-section {
+            display: none;
+            /* Hide all sections by default */
+        }
+
+        #bouquets {
+            display: block;
+            /* Show bouquets by default */
+        }
+
+        .categories button {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .categories button.active {
+            background-color: #f392c7;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+    .product-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.product-card {
+    background: #ffe6f0;
+    border-radius: 15px;
+    padding: 15px;
+    width: 200px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+    </style>
+
+</head>
+
+<body>
+    <!---Header-->
+    <header class="navbar">
+        <h2 onclick="goToHome()" style="cursor: pointer;">Petal Paradise</h2>
+        <input type="text" id="search" placeholder="Search for flowers..." onkeyup="searchProducts()">
+        <!-- Categories -->
+        <section4 class="categories">
+            <button onclick="filterCategory('Bouquets')">Bouquets</button>
+            <button onclick="filterCategory('Arrangements')">Arrangements</button>
+            <button onclick="filterCategory('Plants')">Plants</button>
+            <button onclick="filterCategory('Orchids')">Orchids</button>
+        </section4>
+        <ul>
+
+            <div class="cart-container" onclick="toggleCart()">
+                <span class="cart-icon">🛒</span>
+                <span id="cart-count">0</span>
+            </div>
+    </header>
+    <div class="section1">
+        <p1> Special Smells <br>Special Bouquets</p1><br>
+        <p2>Discover our top-rated flowers!</p2><br>
+    </div>    
+
+
+    <!---Product section-->
+    <div id="bouquets" class="product-section">
+       <h2>Bouquets</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="./images/red rose.jpeg" alt="Red Roses">
+                <h3>Red Rose Bouquet</h3>
+                <p>$299</p>
+                <button onclick="addToCart('Red Rose Bouquet', 299)">Add to Cart</button>
+            
+        </div>
+      
+            <div class="product-card">
+                <img src="./images/sunflower.jpeg" alt="SunFlower">
+                <h3>SunFlower Bouquet</h3>
+                <p>$299</p>
+                <button onclick="addToCart('Sun Flower', 299)">Add to Cart</button>
+            
+        </div>
+        
+            <div class="product-card">
+                <img src="./images/tulips.jpeg" alt="Tulips">
+                <h3>Tulips Bouquet</h3>
+                <p>$299</p>
+                <button onclick="addToCart('Tulips Bouquet', 299)">Add to Cart</button>
+            
+        </div>
+        </div>
+    </div>
+    <div id="arrangements" class="product-section">
+        <h2>Arrangements</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="./images/baskets.jpeg" alt="Basket">
+                <h3>Basket</h3>
+                <p>$399</p>
+                <button onclick="addToCart('Basket', 399)">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+    <div id="plants" class="product-section">
+        <h2>Plants</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="./images/Money plant.jpeg" alt="Aloe Vera">
+                <h3>Aloe vera</h3>
+                <p>$199</p>
+                <button onclick="addToCart('Money Plant', 199)">Add to Cart</button>
+            </div>
+       
+       
+            <div class="product-card">
+                <img src="./images/cactus.jpeg" alt="Cactus">
+                <h3>Cactus</h3>
+                <p>$199</p>
+                <button onclick="addToCart('Cactus', 199)">Add to Cart</button>
+          
+        </div>
+      
+            <div class="product-card">
+                <img src="./images/Money plant.jpeg" alt="Money Plant">
+                <h3>Money Plant</h3>
+                <p>$199</p>
+                <button onclick="addToCart('Aloe vera', 199)">Add to Cart</button>
+           
+        </div>
+         </div>
+    </div>
+    <div id="orchids" class="product-section">
+        <h2>Orchids</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="./images/orchids.jpeg" alt="White Orchid">
+                <h3>White Orchid</h3>
+                <p>$299</p>
+                <button onclick="addToCart('White Orchid', 299)">Add to Cart</button>
+            </div>
+        </div>
+  </div>
+
+    <script>
+
+        // Product filtering
+        function filterCategory(category) {
+            // Hide all product sections first
+            const allSections = document.querySelectorAll('.product-section');
+            allSections.forEach(section => {
+                section.style.display = 'none';
+            });
+
+            // Show the selected category
+            const selectedSection = document.getElementById(category.toLowerCase());
+            if (selectedSection) {
+                selectedSection.style.display = 'block';
+
+                // Update section title
+                const sectionTitle = document.getElementById('section-title');
+                if (sectionTitle) {
+                    sectionTitle.textContent = category;
+                }
+            }
+        }
+
+let cartCount = 0;
+let cart = [];
+
+function addToCart(productName, price) {
+    // Update cart count
+    cartCount++;
+    document.getElementById('cart-count').textContent = cartCount;
+    
+    // Add item to cart array
+    cart.push({ name: productName, price: price });
+    
+    // Save to localStorage
+    localStorage.setItem('cart', JSON.stringify(cart));
+    
+    // Show confirmation
+    alert(`${productName} added to cart!`);
+}
+
+function toggleCart() {
+    // Simple cart display
+    if (cart.length == 0) {
+        alert('Your cart is empty!');
+    } else {
+        let cartItems = 'Your Cart:\n';
+        let total = 0;
+
+        cart.forEach(item => {
+            cartItems += `- ${item.name}: $${item.price}\n`;
+            total += item.price;
+        });
+        
+        cartItems += `\nTotal: $${total}`;
+        alert(cartItems);
+    }
+}
+
+
+        function filterCategory(category) {
+            // 1. Hide the home section (Special Smells section)
+            const homeSection = document.querySelector('.section1');
+            if (homeSection) {
+                homeSection.style.display = 'none';
+            }
+
+            // 2. Hide all product sections
+            const allSections = document.querySelectorAll('.product-section');
+            allSections.forEach(section => {
+                section.style.display = 'none';
+            });
+
+            // 3. Show only the selected category
+            const selectedSection = document.getElementById(category.toLowerCase());
+            if (selectedSection) {
+                selectedSection.style.display = 'block';
+            }
+        }
+
+        // Add this function to go back to home page
+        function goToHome() {
+            // Show home section
+            const homeSection = document.querySelector('.section1');
+            if (homeSection) {
+                homeSection.style.display = 'block';
+            }
+
+            // Hide all product sections
+            const allSections = document.querySelectorAll('.product-section');
+            allSections.forEach(section => {
+                section.style.display = 'none';
+            });
+        }
+
+    </script>
+</body>
+
+</html>
