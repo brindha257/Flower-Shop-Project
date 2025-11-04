@@ -1,2 +1,21 @@
 # Flower-Shop-Project
 <img width="1914" height="876" alt="Screenshot 2025-10-31 162358" src="https://github.com/user-attachments/assets/3f160013-a2e2-4f00-a65e-6152e85e4600" />
+Petal Paradise - Flower Shop Website
+A beautiful and responsive e-commerce website for a flower shop built with HTML, CSS, and JavaScript.
+🌸 Features
+· Responsive Design: Clean and modern UI that works across devices
+· Product Categories:
+  --Bouquets
+  --Arrangements
+  --Plants
+  --Orchids
+· Shopping Cart: Add items to cart with real-time count updates
+· Product Filtering: Easy navigation between different flower categories
+· Search Functionality: Search bar for finding specific flowers
+· Interactive Elements: Hover effects and smooth transitions
+
+🛠️ Technologies Used
+
+· Frontend: HTML, CSS, JavaScript
+· Styling: Custom CSS with gradients and animations
+· Storage: LocalStorage for cart persistence
